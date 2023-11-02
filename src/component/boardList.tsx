@@ -2,7 +2,7 @@
 import { color } from "framer-motion"
 import { Box, Flex, Text, Button, SimpleGrid, Grid} from "../assets/chakra"
 import { Link } from "../assets/Linknext-js"
-import { theme } from "@/app/providers"
+import { theme } from "@/app/(site)/providers"
 
 const resultats = [
     {slug : "slug", name :"Nom"},
@@ -12,7 +12,7 @@ const resultats = [
 
 async function getList(){
     try {
-        const res = await fetch("http://127.0.0.1:3000/api/board", {cache:"no-store"})
+        const res = await fetch(`${process.env.localhost}/api/board`, {cache:"no-store"})
         const results = await res.json()
         return results
     } catch (error) {
@@ -22,7 +22,6 @@ async function getList(){
 
 export default async function ListBoard(){
     const results = await getList()
-    
     return(
         <SimpleGrid gridTemplateColumns={"1fr 1fr"}> 
             <Flex flexDirection="column" alignItems={"center"} mt={"50px"} >
@@ -30,7 +29,7 @@ export default async function ListBoard(){
                 <Text as="h2" fontWeight={"800"} fontSize={"2rem"} mb={"20px"}> The Board List</Text>
                     {results && results.map((data : {name : string, slug : string})=>{
                         return (
-                        <Link href={`/boards/${data.slug}`}  key={data.name}>
+                        <Link href={`/boards/${decodeURIComponent(data.slug)}`}  key={data.name}>
                             <Button 
                                 colorScheme="light"
                                 mt="20px" variant={'outline'} size={"lg"} borderRadius={"5px"} p="1em 2em 1em 2em"

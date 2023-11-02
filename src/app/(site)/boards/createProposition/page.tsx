@@ -20,23 +20,38 @@ export default function FormProposition({params}:{params : {slug : string}}){
     const router = useRouter()
     const [activeBouton, setActiveBouton] = useBoolean(false)
     const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
+        console.log("Start Post");
+        
+        if(ref.current)
+        try {
+            fetch(`${process.env.localhost}/api/newProposition`, {
+                method:'post',
+                headers : {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify({title : ref.current.value, slug : (params.slug)})
+            })
+        } catch (error) {   
+            console.log("Erreur de fetch : ", error);
+            
+        }
         e.preventDefault()
     }
-    const handleChange = ()=>{
-        if(ref.current){
-            const tab = (ref.current?.value).split('')
-            // let isLetter:boolean = false
-            // isLetter = tab.find((el:string)=>{
-            //     if(el !== " "){
-            //         return true    
-            //     }
-            //     else return false
-            // })
-            // if (isLetter) {
-            //     setActiveBouton.off()
-            // }else setActiveBouton.on()
-    }
-    }
+    // const handleChange = ()=>{
+    //     if(ref.current){
+    //         const tab = (ref.current?.value).split('')
+    //         // let isLetter:boolean = false
+    //         // isLetter = tab.find((el:string)=>{
+    //         //     if(el !== " "){
+    //         //         return true    
+    //         //     }
+    //         //     else return false
+    //         // })
+    //         // if (isLetter) {
+    //         //     setActiveBouton.off()
+    //         // }else setActiveBouton.on()
+    // }
+    // }
     return(
         <Flex justifyContent={"center"}  >
             <Container  border={"1px solid gray"} w="auto" p={"60px 40px 80px 40px"}>
@@ -51,7 +66,7 @@ export default function FormProposition({params}:{params : {slug : string}}){
                             Donnez votre proposition
                         </FormLabel>
                         <Box >
-                            <Input  type="text" ref={ref} onChange={handleChange} required/>
+                            <Input  type="text" ref={ref} required/>
                             <FormHelperText color={"White"}>Voter pour la meilleur proposition  </FormHelperText>
                             <Button type={"submit"} isDisabled={activeBouton} variant="solid" mt={"20px"} bgColor={"cyan.500"} color={"white"}> Envoyer</Button>        
                         </Box>

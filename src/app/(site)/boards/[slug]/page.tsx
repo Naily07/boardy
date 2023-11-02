@@ -1,7 +1,7 @@
-import Proposition from '../../../component/propositionList'
+import Proposition from '../../../../component/propositionList'
 // import FromProposition from './form'
 // import React from "react"
-import {Flex, Box, Text, Button} from '../../../assets/chakra'
+import {Flex, Box, Text, Button} from '../../../../assets/chakra'
 import {PropsWithChildren} from "react"
 import Link from 'next/link'
 
@@ -16,10 +16,10 @@ export default async function singleBoard({params, children}:props){
         flexDirection={"column"} h={"100vh"}
     >
         <Box className="card" border={"1px solid gray"} w="auto" p={"60px 40px 80px 40px"}>
-            <Text fontSize={"2.5rem"} as={"h2"} textAlign={"center"} pb={"20px"}>{(params.slug)}?</Text>
+            <Text fontSize={"2.5rem"} as={"h2"} textAlign={"center"} pb={"20px"}>{decodeURIComponent(params.slug)}?</Text>
             {/* {board} */}
             <Flex >
-                <Link href="/boards/createProposition"
+                <Link href={{pathname : "/boards/createProposition", query :(decodeURIComponent(params.slug))}}
                 >
                     <Button
                     variant={"unstyled"}
@@ -31,7 +31,6 @@ export default async function singleBoard({params, children}:props){
                         Créer une nouvelle proposition
                     </Button>
                 </Link>
-                {/* <FormProposition params={params}/>   */}
             </Flex >
             <Box>
                 <Proposition params={params}/>

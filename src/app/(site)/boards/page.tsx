@@ -11,12 +11,28 @@ import {
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef } from "react";
 
+
+
 export default function CreateBoard(){
     const ref = useRef<HTMLInputElement>(null)
     const route = useRouter()
     const handleSubmit = (e : FormEvent<HTMLFormElement>)=>{
-        if(ref.current)
-            console.log(ref.current?.value)    
+        if(ref.current){
+            try {
+                fetch(`${process.env.localhost}/api/board/`,{
+                    method : 'POST',
+                    headers : {
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify({name : ref.current.value})
+                })
+                .then(_=>{
+                    route.push("/")
+                })
+            } catch (error) {
+                console.log("post Erreur : ", error);
+            }
+        }
         e.preventDefault()                      
     }
     return (
@@ -39,9 +55,9 @@ export default function CreateBoard(){
                     </FormLabel>
                     <SimpleGrid spacing={"20px"} mt={"40px"} >
                         <Input type="text" border={"1px solid gray"} 
-                        _focus={{borderColor:"pink"}}
-                        ref={ref}
-                        required
+                            _focus={{borderColor:"pink"}}
+                            ref={ref}
+                            required
                         />
                         <FormHelperText color="White">Faites une proposition pour vos amis</FormHelperText>
                         <Button type="submit" color="pink" variant={"outline"} fontSize={"0.5 rem"}
