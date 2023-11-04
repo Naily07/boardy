@@ -12,7 +12,7 @@ const resultats = [
 
 async function getList(){
     try {
-        const res = await fetch(`${process.env.localhost}/api/board`, {cache:"no-store"})
+        const res = await fetch(`${process.env.localhost}/api/board/`, {cache:"no-store"})
         const results = await res.json()
         return results
     } catch (error) {
@@ -41,7 +41,7 @@ export default async function ListBoard(){
                 </Flex>
             </Flex >
             <Flex justifyContent="center" h="100%" alignItems="center">
-                <Link href={"/boards"}>
+                <Link href={"/boards/newBoard"}>
                     <Button fontWeight={"800"} variant={'solid'} fontSize={"1.5rem"}>Create Board</Button>
                 </Link>
             </Flex >

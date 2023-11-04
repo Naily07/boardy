@@ -1,19 +1,21 @@
-import getBoardModel from "@/models/boardModel";
-import { getPropositionModel } from "@/models/propositionModel";
-import { NextResponse } from "next/server";
+import connectDb from "@/libs/connetDb"
+import getBoardModel from "@/models/boardModel"
+import { getPropositionModel } from "@/models/propositionModel"
+import { NextResponse } from "next/server"
 
-export async function GET(req : Request, res : Response){
-    const request = await req.json()
+export async function GET(req : Request, {params} : {params : {slug : string}}){
+    await connectDb()
     const board = await getBoardModel()
-    const boardId = await board
-    .findOne({slug : request.params.slug})
-    .select("id")
+    const idBoard = await board
+    .findOne({slug : params.slug})
+    .select("_id")
+    console.log("IDD = ", idBoard);
 
-    const propo = await getPropositionModel()
-    const listPropo = await propo
-    .find({author : boardId})
-    // .populate("board", "id")
+    const proposition = await getPropositionModel()
+    const listPropo = await proposition
+    .find({board : idBoard})
+    // .populate("board")
     .select("title note")
-
+    console.log(listPropo)    
     return NextResponse.json(listPropo, {status : 201})
 }

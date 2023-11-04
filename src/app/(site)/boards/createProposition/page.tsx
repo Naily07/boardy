@@ -10,30 +10,30 @@ import {
     Flex,
     Container
 } from '@chakra-ui/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState, FormEvent } from 'react'
 
 
 
-export default function FormProposition({params}:{params : {slug : string}}){
+export default function FormProposition({query} : {query : string}){
     const ref = useRef<HTMLInputElement>(null)
     const router = useRouter()
+    const params = useSearchParams()
     const [activeBouton, setActiveBouton] = useBoolean(false)
     const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
-        console.log("Start Post");
-        
         if(ref.current)
         try {
-            fetch(`${process.env.localhost}/api/newProposition`, {
+            fetch(`http://localhost:3000/api/newProposition/`, {
                 method:'post',
                 headers : {
                     'Content-Type': 'application/json'
                 },
-                body : JSON.stringify({title : ref.current.value, slug : (params.slug)})
+                body : JSON.stringify({title : ref.current.value, slug : params.get("demande")})
+                
             })
+            .then(_=>router.push(`/boards/${params.get("demande")}`))
         } catch (error) {   
-            console.log("Erreur de fetch : ", error);
-            
+            console.log("Erreur de fetch : ", error); 
         }
         e.preventDefault()
     }
@@ -54,6 +54,7 @@ export default function FormProposition({params}:{params : {slug : string}}){
     // }
     return(
         <Flex justifyContent={"center"}  >
+           
             <Container  border={"1px solid gray"} w="auto" p={"60px 40px 80px 40px"}>
                 <form onSubmit={handleSubmit}>
                     <FormControl >

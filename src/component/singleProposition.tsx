@@ -7,8 +7,10 @@ import { useRouter } from 'next/navigation'
 
 
 type PropoType = {
-    propo : {title : string,
-    note : number}
+    propo : {
+    title : string,
+    note : number
+    }
 }
 
 export default function SingleProposition({propo}:PropoType){

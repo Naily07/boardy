@@ -19,7 +19,7 @@ export default async function singleBoard({params, children}:props){
             <Text fontSize={"2.5rem"} as={"h2"} textAlign={"center"} pb={"20px"}>{decodeURIComponent(params.slug)}?</Text>
             {/* {board} */}
             <Flex >
-                <Link href={{pathname : "/boards/createProposition", query :(decodeURIComponent(params.slug))}}
+                <Link href={{pathname : "/boards/createProposition/", query :{demande : (decodeURIComponent(params.slug))}}}
                 >
                     <Button
                     variant={"unstyled"}

@@ -11,7 +11,7 @@ const boardModel = new mongoose.Schema({
         type : String,
         require : true
     },
-    propositions : [{type : mongoose.Schema.Types.ObjectId, ref : "proposition"}] //des propositions pour chaque
+    propositions : [{type : mongoose.Schema.Types.ObjectId, ref : "propositions"}] //des propositions pour chaque
 })
 
 async function getBoardModel() {
