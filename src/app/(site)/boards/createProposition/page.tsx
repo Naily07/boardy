@@ -21,6 +21,7 @@ export default function FormProposition({query} : {query : string}){
     const params = useSearchParams()
     const [activeBouton, setActiveBouton] = useBoolean(false)
     const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
+        e.preventDefault()
         if(ref.current)
         try {
             fetch(`http://localhost:3000/api/newProposition/`, {
@@ -31,11 +32,14 @@ export default function FormProposition({query} : {query : string}){
                 body : JSON.stringify({title : ref.current.value, slug : params.get("demande")})
                 
             })
-            .then(_=>router.push(`/boards/${params.get("demande")}`))
+            .then(_=>{
+                    router.push(`/boards/${params.get("demande")}`)
+                    router.refresh()
+                }
+            )
         } catch (error) {   
             console.log("Erreur de fetch : ", error); 
         }
-        e.preventDefault()
     }
     // const handleChange = ()=>{
     //     if(ref.current){

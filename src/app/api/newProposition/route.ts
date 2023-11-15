@@ -6,9 +6,8 @@ export async function POST(req : Request){
     
     try {
         const propo = await getPropositionModel() 
-        const request = await req.json()
+        let request = await req.json()
         const board = await getBoardModel()
-
         const authorId = await board
         .findOne({slug : request.slug})
         .select("id")

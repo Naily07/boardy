@@ -17,8 +17,9 @@ export default async function Proposition({params} : {params : {slug : string}})
     let datas
     const slug =  decodeURIComponent(params.slug)
     try {
-        resultat = await fetch(`http://localhost:3000/api/board/${slug}`, {cache:"no-store"})
-            .then(res=> res.json())
+        // resultat = await fetch(`http://localhost:3000/api/board/${slug}`, {cache:"no-store"})
+        resultat = await fetch(`http://localhost:3000/api/propositions?slug=${slug}`, {cache:"no-store"})
+            .then(res => res.json())
         datas = await resultat
     } catch (error) {
         console.log("Error fetching list proposition", error);

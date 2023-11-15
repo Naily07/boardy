@@ -10,9 +10,17 @@ export async function GET(req : Request){
 
 export async function POST(req : Request){
     const board = await getBoardModel()
-    const request = await req.json() 
-    console.log("reqq : ", request);
+    let request = await req.json() 
     let slug : string[] | string = (request.name).split(" ").join("-")
+   
+    let name : string[]  = (request.name).split("")
+    if(name.indexOf("?") > -1){
+        let newRequest  = {name : ""}
+        let index : number = name.indexOf("?")
+        newRequest.name = request.name.slice(0, index)
+        request.name = newRequest.name
+        slug = (request.name).split(" ").join("-")
+    }
 
     const newBoard = new board({
         name : request.name,

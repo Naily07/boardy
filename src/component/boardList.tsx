@@ -34,7 +34,7 @@ export default async function ListBoard(){
                                 colorScheme="light"
                                 mt="20px" variant={'outline'} size={"lg"} borderRadius={"5px"} p="1em 2em 1em 2em"
                             >
-                                {data.name}?
+                                {data.name} ?
                             </Button>
                         </Link>)
                     })}     
