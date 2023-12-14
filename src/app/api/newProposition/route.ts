@@ -1,9 +1,7 @@
 import getBoardModel from "@/models/boardModel";
 import { getPropositionModel } from "@/models/propositionModel";
 
-export async function POST(req : Request){
-    console.log("POSTEKO");
-    
+export async function POST(req : Request){  
     try {
         const propo = await getPropositionModel() 
         let request = await req.json()

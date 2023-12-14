@@ -36,34 +36,40 @@ export default function CreateBoard(){
         e.preventDefault()                      
     }
     return (
-        <Flex justifyContent={"center"} alignItems={"center"} >
-            <Container p={"20px"} justifyItems={"center"} 
-            border={"1px solid white"}
-            w={"500px"} h={"600"}
+        <Flex 
+            justifyContent={"center"} 
+            alignItems={"center"}
+            h={"100vh"}
+        >
+            <Container 
+                p={"40px"} 
+                border={"1px solid white"}
+                alignItems={"center"}
+                w={"auto"}
             >
                 <form onSubmit={handleSubmit}>
-                <FormControl >
-                    <FormLabel as='label' 
-                        border={"1px solid white"} 
-                        bgGradient={"Linear(to-l, green.200, pink.500)"}
-                        bgClip={"text"} 
-                        p={"10px 20px 10px 20px"} 
-                        textAlign={"center"} 
-                        fontSize={"1.5em"} fontWeight={"800"}
-                        >
-                            Créer une Board
-                    </FormLabel>
-                    <SimpleGrid spacing={"20px"} mt={"40px"} >
-                        <Input type="text" border={"1px solid gray"} 
-                            _focus={{borderColor:"pink"}}
-                            ref={ref}
-                            required
-                        />
-                        <FormHelperText color="White">Faites une proposition pour vos amis</FormHelperText>
-                        <Button type="submit" color="pink" variant={"outline"} fontSize={"0.5 rem"}
-                            _hover={{bgColor : "none"}}
-                        >Envoyer</Button>
-                    </SimpleGrid>
+                    <FormControl >
+                        <FormLabel as='label' 
+                            border={"1px solid white"} 
+                            bgGradient={"Linear(to-l, green.200, pink.500)"}
+                            bgClip={"text"} 
+                            p={"10px 60px 10px 60px"} 
+                            textAlign={"center"} 
+                            fontSize={"1.5em"} fontWeight={"800"}
+                            >
+                                Créer une Board
+                        </FormLabel>
+                        <SimpleGrid spacing={"20px"} mt={"40px"} >
+                            <Input type="text" border={"1px solid gray"} 
+                                _focus={{borderColor:"pink"}}
+                                ref={ref}
+                                required
+                            />
+                            <FormHelperText color="White">Demander des avis pour resoudre vos soucis</FormHelperText>
+                            <Button type="submit" color="pink" variant={"outline"} fontSize={"0.5 rem"}
+                                _hover={{bgColor : "none"}}
+                            >Envoyer</Button>
+                        </SimpleGrid>
                     </FormControl>
                 </form>
             </Container>    

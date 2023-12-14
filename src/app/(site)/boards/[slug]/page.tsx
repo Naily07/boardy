@@ -32,7 +32,7 @@ export default async function singleBoard({params, children}:props){
     >
         <Box className="card" border={"1px solid gray"} minW    ="400px" p={"60px 40px 80px 40px"}>
             <Text fontSize={"2.5rem"} as={"h2"} textAlign={"center"} pb={"20px"}>
-                {name.indexOf("?") == -1 ?<>{name} ? </> : <>{name}</>}
+                {name.indexOf("?") == -1 ?<> {name} ? </> : <>{name}</>}
                 {/* {name} ? */}
             </Text>
             {/* {board} */}
@@ -41,7 +41,7 @@ export default async function singleBoard({params, children}:props){
                 >
                     <Button
                     variant={"unstyled"}
-                    p={"10px 5px 10px 5px"}
+                    p={" 0px 5px 0px 5px"}
                     bgGradient={"Linear(to-l, green.200, pink.500)"}
                     bgClip={"text"}
                     border={"1px solid white"}

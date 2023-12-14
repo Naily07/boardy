@@ -13,8 +13,6 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState, FormEvent } from 'react'
 
-
-
 export default function FormProposition({query} : {query : string}){
     const ref = useRef<HTMLInputElement>(null)
     const router = useRouter()
@@ -30,7 +28,6 @@ export default function FormProposition({query} : {query : string}){
                     'Content-Type': 'application/json'
                 },
                 body : JSON.stringify({title : ref.current.value, slug : params.get("demande")})
-                
             })
             .then(_=>{
                     router.push(`/boards/${params.get("demande")}`)
@@ -57,9 +54,18 @@ export default function FormProposition({query} : {query : string}){
     // }
     // }
     return(
-        <Flex justifyContent={"center"}  >
+        <Flex 
+        justifyContent={"center"}
+        alignItems={"center"}
+        h={"100vh"}
+        >
            
-            <Container  border={"1px solid gray"} w="auto" p={"60px 40px 80px 40px"}>
+            <Container  
+                border={"1px solid gray"} 
+                w="auto" 
+                p={"60px 40px 80px 40px"}
+                h={"auto"}
+            >
                 <form onSubmit={handleSubmit}>
                     <FormControl >
                         <FormLabel as='label' 

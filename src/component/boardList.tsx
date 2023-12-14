@@ -23,8 +23,30 @@ async function getList(){
 export default async function ListBoard(){
     const results = await getList()
     return(
-        <SimpleGrid gridTemplateColumns={"1fr 1fr"}> 
-            <Flex flexDirection="column" alignItems={"center"} mt={"50px"} >
+        <Flex  
+            justifyContent={ "center"}
+            alignItems={{md : "center", base : "center"}}
+            flexDir={{md:"row-reverse", base : "column" }}
+            // flexDirection={"row"}
+        > 
+            <Flex 
+                justifyContent={"center"}
+                h={{md : "100%"}}
+                w={{md : "50%"}}
+                alignItems={{md:"center", base:"left"}}
+                mt={{base : "20px"}}
+            >
+                <Link href={"/boards/newBoard"}>
+                    <Button fontWeight={"800"} variant={'solid'} fontSize={"1.5rem"}>Create Board</Button>
+                </Link>
+            </Flex >
+            <Flex
+                w={{md : "50%"}}
+                mt={"50px"}
+                pl={{md : "100px"}}
+                justifyContent={"left"}
+                alignItems={"left"}
+            >
                 <Flex justifyContent={"left"} flexDir={"column"}>
                 <Text as="h2" fontWeight={"800"} fontSize={"2rem"} mb={"20px"}> The Board List</Text>
                     {results && results.map((data : {name : string, slug : string})=>{
@@ -40,11 +62,7 @@ export default async function ListBoard(){
                     })}     
                 </Flex>
             </Flex >
-            <Flex justifyContent="center" h="100%" alignItems="center">
-                <Link href={"/boards/newBoard"}>
-                    <Button fontWeight={"800"} variant={'solid'} fontSize={"1.5rem"}>Create Board</Button>
-                </Link>
-            </Flex >
-        </SimpleGrid >
+            
+        </Flex >
     )
 }
