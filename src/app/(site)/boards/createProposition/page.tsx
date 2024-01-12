@@ -22,7 +22,7 @@ export default function FormProposition(){
         e.preventDefault()
         if(ref.current)
         try {
-            fetch(`${process.env.url}/api/newProposition/`, {
+            fetch(`${process.env.url}api/newProposition/`, {
                 method:'post',
                 headers : {
                     'Content-Type': 'application/json'

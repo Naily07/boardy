@@ -13,7 +13,7 @@ type props = {
 async function getOneBoard(params : {slug : string}){
     let board
     try {
-        const res = await fetch(`${process.env.url}/api/board/${params.slug}`, {cache:"no-store"})
+        const res = await fetch(`${process.env.url}api/board/${params.slug}`, {cache:"no-store"})
         board = await res.json()
     } catch (error) {
         console.log("error name : ", error);
