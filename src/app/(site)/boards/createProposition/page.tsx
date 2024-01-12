@@ -11,7 +11,8 @@ import {
     Container
 } from '@chakra-ui/react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useRef, useState, FormEvent } from 'react'
+import { useRef, FormEvent } from 'react'
+import ParamsDemande from './searchBar'
 
 export default function FormProposition(){
     const ref = useRef<HTMLInputElement>(null)
@@ -22,15 +23,15 @@ export default function FormProposition(){
         e.preventDefault()
         if(ref.current)
         try {
-            fetch(`${process.env.url}api/newProposition/`, {
+            fetch(`${process.env.url}/api/newProposition/`, {
                 method:'post',
                 headers : {
                     'Content-Type': 'application/json'
                 },
-                body : JSON.stringify({title : ref.current.value, slug : params.get("demande")})
+                body : JSON.stringify({title : ref.current.value, slug : ParamsDemande})
             })
             .then(_=>{
-                    router.push(`/boards/${params.get("demande")}`)
+                    router.push(`/boards/${ParamsDemande}`)
                     router.refresh()
                 }
             )
