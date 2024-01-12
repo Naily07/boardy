@@ -6,9 +6,9 @@ import {PropsWithChildren} from "react"
 import Link from 'next/link'
 
 
-type props = PropsWithChildren<{
+type props = {
     params : {slug : string}
-}>
+}
 
 async function getOneBoard(params : {slug : string}){
     let board
