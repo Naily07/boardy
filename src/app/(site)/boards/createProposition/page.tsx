@@ -13,7 +13,7 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState, FormEvent } from 'react'
 
-export default function FormProposition({query} : {query : string}){
+export default function FormProposition(){
     const ref = useRef<HTMLInputElement>(null)
     const router = useRouter()
     const params = useSearchParams()
