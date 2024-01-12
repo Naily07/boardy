@@ -22,7 +22,7 @@ export default function FormProposition({query} : {query : string}){
         e.preventDefault()
         if(ref.current)
         try {
-            fetch(`http://localhost:3000/api/newProposition/`, {
+            fetch(`${process.env.url}/api/newProposition/`, {
                 method:'post',
                 headers : {
                     'Content-Type': 'application/json'

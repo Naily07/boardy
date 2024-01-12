@@ -8,7 +8,7 @@ async function connectDb(){
         .then(()=>console.log("MongoDataBase connectée"))
         .catch((err)=>console.log("Error de connexion", err.message))    
     } catch (error) {
-        console.log("Catcheer Failed BaseData", error);
+        console.log("Failed catch BaseData", error);
     }
 }
 

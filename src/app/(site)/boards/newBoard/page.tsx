@@ -19,7 +19,7 @@ export default function CreateBoard(){
     const handleSubmit = (e : FormEvent<HTMLFormElement>)=>{
         if(ref.current){
             try {
-                fetch(`http://localhost:3000/api/board/`,{
+                fetch(`process.env.url/api/board/`,{
                     method : 'POST',
                     headers : {
                         'Content-Type': 'application/json'

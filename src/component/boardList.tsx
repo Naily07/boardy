@@ -4,15 +4,15 @@ import { Box, Flex, Text, Button, SimpleGrid, Grid} from "../assets/chakra"
 import { Link } from "../assets/Linknext-js"
 import { theme } from "@/app/(site)/providers"
 
-const resultats = [
-    {slug : "slug", name :"Nom"},
-    {slug : "slug", name :"Nom"}
-]
+// const resultats = [
+//     {slug : "slug", name :"Nom"},
+//     {slug : "slug", name :"Nom"}
+// ]
 
 
 async function getList(){
     try {
-        const res = await fetch(`${process.env.localhost}/api/board/`, {cache:"no-store"})
+        const res = await fetch(`${process.env.url}/api/board/`, {cache:"no-store"})
         const results = await res.json()
         return results
     } catch (error) {
