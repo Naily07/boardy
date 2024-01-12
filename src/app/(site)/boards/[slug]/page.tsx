@@ -24,7 +24,7 @@ async function getOneBoard(params : {slug : string}){
 }
 
 
-export default async function singleBoard({params, children}:props){
+export default async function singleBoard({params}:props){
     const {name} = await getOneBoard(params)
     return(
     <Flex justifyContent={"center"} alignItems="center" 
